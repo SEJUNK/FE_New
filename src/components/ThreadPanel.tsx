@@ -25,23 +25,18 @@ export function ThreadPanel({
 
       <div className="mt-5 flex flex-col gap-2.5">
         <FragmentRow receipt={anchor} active />
-        {links.map((l, i) => (
+        {links.map((l) => (
           <div key={l.receipt.id} className="flex flex-col gap-2.5">
-            <div className="ml-4 h-3 w-px bg-accent/50" />
-            <FragmentRow
-              receipt={l.receipt}
-              reason={l.reason}
-              onSelect={onSelect}
-            />
-            {i === links.length - 1 ? null : null}
+            <div className="ml-4 h-3 w-px bg-accent/50" aria-hidden="true" />
+            <FragmentRow receipt={l.receipt} reason={l.reason} onSelect={onSelect} />
           </div>
         ))}
       </div>
 
       <p className="mt-4 text-[11px] leading-relaxed text-muted">
         {links.length
-          ? `These ${links.length} fragments span ${kinds.size} different kinds of record, yet they belong to the same stretch of life. Follow any of them to keep pulling the thread.`
-          : "Nothing else in the archive touches this fragment — a genuinely isolated moment."}
+          ? `These ${links.length} fragments are connected by observable signals in the archive and span ${kinds.size} different kinds of record. Follow any of them to continue exploring the thread.`
+          : "No related fragment was found using the connection signals available in this archive."}
       </p>
     </section>
   );

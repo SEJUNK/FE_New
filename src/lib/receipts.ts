@@ -212,7 +212,7 @@ export const chapters: Chapter[] = CHAPTER_DEFS.map((def, i) => {
   const places = new Set(items.filter((r) => r.place).map((r) => r.place as string)).size;
 
   const headlines = [
-    "A handful of plays, a web player, and nobody watching.",
+    "A small set of early plays marks the beginning of the recorded listening history.",
     `${plays.toLocaleString("en-US")} plays later, a taste starts to hold its shape.`,
     "The single loudest stretch in eleven years of records.",
     `₹${spend.toLocaleString("en-IN")} of ordinary days — milk, autos, snacks, a train ticket.`,
@@ -221,11 +221,11 @@ export const chapters: Chapter[] = CHAPTER_DEFS.map((def, i) => {
   ];
   const narrations = [
     "The earliest fragments are thin: a few dozen songs on a borrowed web player in mid-2013, then almost nothing for a year. Whoever this is, they weren't recording their life yet — they were just pressing play.",
-    "Two years of steady growth. Listening rises from a trickle to thousands of plays, artists repeat for the first time, and the first genuine favourites appear. Nothing else in the archive is moving yet — no spending, no places. Only sound.",
-    "Everything spikes here. This is the peak listening year of the entire archive, and the other datasets wake up alongside it: a ledger of purchases begins, subscriptions appear, trains start showing up. The life gets busier and louder in the same breath.",
-    "The most human stretch in the data. Hundreds of tiny expenses — milk, tea, idli, an auto, a mobile top-up — sit beside playlists and a Netflix subscription. The receipts are small, which is exactly why they add up to a portrait.",
-    "Then the ledger stops almost entirely. For two years, the archive is dominated by music, much of it after midnight. There are no train or city records and barely a purchase slip. The absence of other receipts is the story here.",
-    "The last chapter reverses the recorded pattern: fewer plays every year, alongside more cities, travel swipes and geotagged photos.",
+    "Two years of steady growth. Listening rises from a trickle to thousands of plays, artists begin to repeat, and listening becomes the dominant recorded activity in this part of the archive.",
+    "Listening reaches its highest annual level here. The other supplied records also begin to appear in the curated archive, including purchases, subscriptions and travel-related entries.",
+    "Hundreds of small expenses — including milk, tea, idli, auto rides and mobile top-ups — sit alongside listening records and subscriptions, making everyday activity especially visible in this chapter.",
+    "During these two years, the curated archive contains a much larger share of music records and relatively few non-music entries. A substantial portion of the listening activity occurs after midnight.",
+    "In the final chapter, recorded listening declines while place, travel and photo-related entries become more visible in the supplied archive.",
   ];
   const signatures = [
     `${items.length} fragments · web player era`,
@@ -445,7 +445,7 @@ export const patterns: Pattern[] = (() => {
       id: "small-things",
       label: "A life of small amounts",
       value: `${foodTags.toLocaleString("en-US")}`,
-      body: `Food receipts outnumber every other kind of spending — including ${milk} separate entries for milk and ${autos} auto rides. Nothing dramatic ever happens, and that is the portrait.`,
+      body: `Food receipts outnumber other spending categories in the curated archive, including ${milk} entries for milk and ${autos} auto rides. The pattern highlights the frequency of small everyday transactions.`,
       accent: "gold",
     },
     {
@@ -459,7 +459,7 @@ export const patterns: Pattern[] = (() => {
       id: "week-shape",
       label: "The shape of a week",
       value: dayNames[weekday.indexOf(Math.max(...weekday))] ?? "",
-      body: "Every fragment in the archive, sorted by weekday. The bars barely move: this life ran at almost exactly the same volume seven days a week, weekend or not.",
+      body: "Every curated fragment is grouped by weekday. The distribution shows how recorded activity is spread across the seven days.",
       accent: "mint",
       bars: weekday.map((v, i) => ({ label: dayNames[i] ?? "", value: v })),
     },
@@ -467,7 +467,7 @@ export const patterns: Pattern[] = (() => {
       id: "loyalty",
       label: "Loyalty over novelty",
       value: `${(stats.topArtists[0]?.plays ?? 0).toLocaleString("en-US")}×`,
-      body: `${stats.topArtists[0]?.name ?? "One artist"} alone accounts for that many plays. The top twelve artists repeat endlessly while thousands of others are heard once and dropped.`,
+      body: `${stats.topArtists[0]?.name ?? "One artist"} accounts for that many plays. The most-played artists contribute repeated listening while many other artists appear far less often in the record.`,
       accent: "rose",
       bars: stats.topArtists.slice(0, 8).map((a) => ({ label: a.name, value: a.plays })),
     },
@@ -475,7 +475,7 @@ export const patterns: Pattern[] = (() => {
       id: "returning-places",
       label: "Places that keep returning",
       value: `${stats.topCities[0]?.visits ?? 0}×`,
-      body: `${stats.topCities[0]?.name ?? "One city"} is the most revisited place in the ledger. A handful of cities absorb most of the travel; the rest are visited exactly once.`,
+      body: `${stats.topCities[0]?.name ?? "One city"} is the most frequently recorded place in the ledger. The place distribution shows repeated activity in a smaller set of cities alongside less frequent locations.`,
       accent: "accent",
       bars: stats.topCities.slice(0, 8).map((c) => ({ label: c.name, value: c.visits })),
     },
